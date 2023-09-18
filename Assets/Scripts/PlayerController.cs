@@ -12,10 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speed = 5f;
 
+    private int pickupsCollected;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        pickupsCollected = 0;
+        Debug.Log("hello");
     }
 
     // Update is called once per frame
@@ -38,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter (Collider other) {
       if (other.gameObject.CompareTag("Pickup")) {
         other.gameObject.SetActive(false);
+        pickupsCollected += 1;
       }
     }
 }
