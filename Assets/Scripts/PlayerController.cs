@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,14 +13,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speed = 5f;
 
+    public TextMeshProUGUI countText;
+    public GameObject winTextGameObject;
+
     private int pickupsCollected;
 
     // Start is called before the first frame update
     void Start()
     {
+        winTextGameObject.SetActive(false);
         rb = GetComponent<Rigidbody>();
         pickupsCollected = 0;
         Debug.Log("hello");
+        SetCountText();
     }
 
     // Update is called once per frame
@@ -33,16 +39,20 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * speed);
     }
 
-    void OnMove(InputValue movementValue) {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-        movementX = movementVector.x;
-        movementY = movementVector.y;
+    
+
+    void SetCountText () {
+        countText.text = "Points: " + pickupsCollected.ToString();
+        if (pickupsCollected >= 12) {
+          winTextGameObject.SetActive(true);
+        }
     }
 
     void OnTriggerEnter (Collider other) {
-      if (other.gameObject.CompareTag("Pickup")) {
-        other.gameObject.SetActive(false);
-        pickupsCollected += 1;
-      }
+        if (other.gameObject.CompareTag("Pickup")) {
+            other.gameObject.SetActive(false);
+            pickupsCollected += 1;
+            SetCountText();
+        }
     }
 }
