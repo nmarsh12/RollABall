@@ -7,6 +7,10 @@ public class WorldController : MonoBehaviour
 {
     float xRotation;
     float yRotation;
+    public GameObject player;
+
+    Vector3 playerOrientation;
+    
 
 
     // Start is called before the first frame update

@@ -694,6 +694,11 @@ PrefabInstance:
       propertyPath: winTextGameObject
       value: 
       objectReference: {fileID: 1067363771}
+    - target: {fileID: 9140591786612144190, guid: 9b9bd4f0355191e4ba528248e1356651,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4929234127223815959, guid: 9b9bd4f0355191e4ba528248e1356651, type: 3}
     m_RemovedGameObjects: []
@@ -894,6 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6532a039cfa0e94486684b9af33d8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1931761402}
 --- !u!4 &1923708332
 Transform:
   m_ObjectHideFlags: 0
