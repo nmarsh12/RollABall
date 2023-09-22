@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
-    [SerializeField]
+    
+    AudioSource audioSource;
 
     public TextMeshProUGUI countText;
     public GameObject winTextGameObject;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         winTextGameObject.SetActive(false);
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         pickupsCollected = 0;
         Debug.Log("hello");
         SetCountText();
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
         timeWasted = Time.realtimeSinceStartup;
         winTextGameObject.GetComponent<TextMeshProUGUI>().text = "You Wasted " + timeWasted.ToString() + " Seconds Playing This";
         winTextGameObject.SetActive(true);
+        audioSource.Play();
     }
     
 
