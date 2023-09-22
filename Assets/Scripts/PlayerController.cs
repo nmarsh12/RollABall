@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         pickupsCollected = 0;
-        Debug.Log("hello");
         SetCountText();
     }
 
@@ -42,7 +41,8 @@ public class PlayerController : MonoBehaviour
     void ShowWinText ()
     {
         timeWasted = Time.realtimeSinceStartup;
-        winTextGameObject.GetComponent<TextMeshProUGUI>().text = "You Wasted " + timeWasted.ToString() + " Seconds Playing This";
+        // Apparently "F2" in the ToString argument rounds it to two decimal places, pretty cool
+        winTextGameObject.GetComponent<TextMeshProUGUI>().text = "You Wasted " + timeWasted.ToString("F1") + " Seconds Playing This";
         winTextGameObject.SetActive(true);
         audioSource.Play();
     }
