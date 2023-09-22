@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Callbacks;
+//using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,7 +23,10 @@ public class WorldController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
     void FixedUpdate() {

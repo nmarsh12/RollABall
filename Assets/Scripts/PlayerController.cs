@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private int pickupsCollected;
 
+    private float timeWasted;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +36,19 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+
+    void ShowWinText ()
+    {
+        timeWasted = Time.realtimeSinceStartup;
+        winTextGameObject.GetComponent<TextMeshProUGUI>().text = "You Wasted " + timeWasted.ToString() + " Seconds Playing This";
+        winTextGameObject.SetActive(true);
+    }
     
 
     void SetCountText () {
         countText.text = "Points: " + pickupsCollected.ToString();
         if (pickupsCollected >= pickupParent.transform.childCount) {
-          winTextGameObject.SetActive(true);
+            ShowWinText();
         }
     }
 
