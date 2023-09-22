@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,16 +8,16 @@ public class WorldController : MonoBehaviour
 {
     float xRotation;
     float yRotation;
-    public GameObject player;
 
-    Vector3 playerOrientation;
-    
+    [SerializeField]
+    float speed = 1f;
 
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -26,8 +27,8 @@ public class WorldController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector3 rotation = new Vector3(-1 * yRotation, 0f, xRotation);
-        transform.Rotate(rotation);
+        Vector3 rotation = new Vector3(yRotation, 0f, xRotation * -1);
+        rb.AddTorque(rotation * -1 * speed, ForceMode.Acceleration);
     }
 
     void OnMove(InputValue movementValue) {

@@ -11,10 +11,11 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     [SerializeField]
-    private float speed = 5f;
 
     public TextMeshProUGUI countText;
     public GameObject winTextGameObject;
+
+    public GameObject pickupParent;
 
     private int pickupsCollected;
 
@@ -33,17 +34,11 @@ public class PlayerController : MonoBehaviour
     {
         
     }
-
-    void FixedUpdate() {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        rb.AddForce(movement * speed);
-    }
-
     
 
     void SetCountText () {
         countText.text = "Points: " + pickupsCollected.ToString();
-        if (pickupsCollected >= 12) {
+        if (pickupsCollected >= pickupParent.transform.childCount) {
           winTextGameObject.SetActive(true);
         }
     }
